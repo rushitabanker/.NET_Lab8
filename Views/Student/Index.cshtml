@@ -1,0 +1,48 @@
+@model IEnumerable<Ass8.Models.Student>
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-8">
+            <h2 class="text-primary">Student List</h2>
+        </div>
+        <a asp-controller="Student" asp-action="Create" class="btn btn-primary">Create New Student</a>
+        
+    </div>
+    <br />
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Student Id</th>
+                    <th>Class</th>
+                    <th>Subject Id</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj1 in Model)
+                {
+                    <tr>
+                        <td width="50%">@obj1.Name</td>
+                        <td>@obj1.StudentId</td>
+                        <td>@obj1.Class</td>
+                        
+                        <td>@obj1.SubjectId</td>
+                        <td>
+                           <a asp-controller="Student" asp-action="Edit" asp-route-StudentId="@obj1.StudentId" class="btn btn-primary">Edit</a>
+                            <a asp-controller="Student" asp-action="Delete" asp-route-StudentId="@obj1.StudentId" class="btn btn-primary">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p> No subject details.</p>
+    }
+</div>
+
